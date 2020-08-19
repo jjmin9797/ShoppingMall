@@ -78,7 +78,7 @@ public class MemberController {
 			if(passMatch) {
 				HttpSession session = req.getSession();
 				session.setAttribute("member", login);
-				System.out.println(login.getUserName() + login.getUserPass());
+
 				 return "redirect:/";
 			}
 		}
