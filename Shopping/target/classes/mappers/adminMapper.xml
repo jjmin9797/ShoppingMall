@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="category" resultType = "bit.com.shop.domain.CategoryVO">
 		select
-			level1, cateName, cateCode, cateCodeRef
+			level, cateName, cateCode, cateCodeRef
 		from goods_category
 	    	start with cateCodeRef is null connect by prior cateCode = cateCodeRef
 

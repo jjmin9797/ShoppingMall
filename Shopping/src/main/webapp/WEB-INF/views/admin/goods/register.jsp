@@ -97,7 +97,7 @@ var cate1Arr = new Array();
 var cate1Obj = new Object();
 
 for (var i = 0; i < jsonData.length; i++) {
-	if (jsonData[i].level1 == "1") {
+	if (jsonData[i].level == "1") {
 		cate1Obj = new Object();
 		cate1Obj.cateCode = jsonData[i].cateCode;
 		cate1Obj.cateName = jsonData[i].cateName;
@@ -122,7 +122,7 @@ $(document).on("change", "select.category1", function(){
 	// 2차 분류 셀렉트 박스에 삽입할 데이터 준비
 	for(var i = 0; i < jsonData.length; i++) {
 		
-		if(jsonData[i].level1 == "2") {  // 레빌이 2인 데이터가 있다면
+		if(jsonData[i].level == "2") {  // 레빌이 2인 데이터가 있다면
 			cate2Obj = new Object();  // 초기화
 			
 			// cate2Obj에 cateCode, cateName, cateCodeRef를 저장
