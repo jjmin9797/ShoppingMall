@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
    <h1 class = "title">
-   		<a href="/">KUBG</a>
+   		<a href="/">CovidMall</a>
    </h1>

@@ -5,7 +5,7 @@
 <html>
 <head>
 
-	<title>kubg</title>
+	<title>CovidMall</title>
 </head>
 <body>
 <div id = "root">
