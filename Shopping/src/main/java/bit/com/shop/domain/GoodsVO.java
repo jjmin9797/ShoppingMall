@@ -14,6 +14,7 @@ public class GoodsVO {
 	private String gdsDes;
 	private String gdsImg;
 	private Date gdsDate;
+	private String gdsThumbImg;
 	
 	
 }

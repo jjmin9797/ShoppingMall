@@ -33,5 +33,6 @@
     <context:component-scan base-package="bit.com.shop.domain"></context:component-scan>
     <context:component-scan base-package="bit.com.shop.persistence"></context:component-scan>
     <context:component-scan base-package="bit.com.shop.service"></context:component-scan>
+    <context:component-scan base-package="bit.com.shop.utils"></context:component-scan>
     
 </beans>

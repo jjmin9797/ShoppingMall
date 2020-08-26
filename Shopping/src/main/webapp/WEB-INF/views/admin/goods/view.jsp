@@ -45,6 +45,8 @@ label { display:inline-block; width:70px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
 textarea#gdsDes { width:400px; height:180px; }
+.oriImg { width:500px; height:auto; }
+.thubImg {}
 </style>
 
 
@@ -73,7 +75,7 @@ textarea#gdsDes { width:400px; height:180px; }
       
       
       <div id="container_box">
-         <h2>상품 등록</h2>
+         <h2>상품 조회</h2>
 
 				<form role="form" method="post" autocomplete="off">
 				<input type="hidden" name="n" value="${goods.gdsNum}" />
@@ -99,7 +101,18 @@ textarea#gdsDes { width:400px; height:180px; }
 					<div class="inputArea">
 						<label for="gdsDes">상품소개</label> <span>${goods.gdsDes}</span>
 					</div>
+					
+ 
+					<div class = "inputArea">
+						<label for = "gdsImg">이미지</label>
+						<p>원본 이미지</p>
+						<img src = "${goods.gdsImg }" class = "oriImg"/>
+						
+						<p>썸네일 </p>
+						<img src = "${goods.gdsThumbImg }" class = "thumImg"/>
+					</div>
 
+					
 					<div class="inputArea">
 						<button type="button" id="modify_Btn" class="btn btn-warning">수정</button>
 						<button type="button" id="delete_Btn" class="btn btn-danger">삭제</button>

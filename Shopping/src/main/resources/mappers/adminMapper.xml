@@ -15,10 +15,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 </select>
 <!-- 상품 등록 -->
+
+<!-- 
 <insert id = "register">
 insert into tbl_goods (gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
    values (tbl_goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
-</insert>
+</insert>         
+-->
 
 <select id = "goodslist" resultType ="bit.com.shop.domain.GoodsVO">
 <!-- 상품 목록 --> 
@@ -35,8 +38,13 @@ select gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate fr
 </select> -->
 
 <select id ="goodsView" resultType="bit.com.shop.domain.GoodsViewVO"> 
-select g.gdsNum, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate from tbl_goods g inner join goods_category c 
-on g.catecode=c.catecode where g.gdsnum = #{gdsNum}
+ select
+     g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate,
+     g.gdsImg, g.gdsThumbImg
+         from tbl_goods g
+             inner join goods_category c
+                 on g.cateCode = c.cateCode           
+            where g.gdsNum = #{gdsNum}
 
 </select>
 
@@ -44,6 +52,14 @@ on g.catecode=c.catecode where g.gdsnum = #{gdsNum}
 update tbl_goods set gdsName= #{gdsName}, cateCode= #{cateCode},  gdsPrice =#{gdsPrice}, gdsStock=#{gdsStock}, gdsDes= #{gdsDes} where gdsNum= ${gdsNum}
 
 </update>
+
+<!-- 상품 등록 -->
+<insert id="register">
+ insert into tbl_goods (gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes,
+       gdsImg, gdsThumbImg)
+     values (tbl_goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes},
+        #{gdsImg}, #{gdsThumbImg})
+</insert>
 
 
 </mapper>

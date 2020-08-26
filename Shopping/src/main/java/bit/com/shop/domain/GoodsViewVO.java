@@ -20,5 +20,7 @@ public class GoodsViewVO {
 	private String cateCodeRef; 
 	private String cateName; 
 	
+	private String gdsThumbImg;
+	
 
 }
