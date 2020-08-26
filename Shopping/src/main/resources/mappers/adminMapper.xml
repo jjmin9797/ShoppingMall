@@ -14,4 +14,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    	start with cateCodeRef is null connect by prior cateCode = cateCodeRef
 
 </select>
+<!-- 상품 등록 -->
+<insert id = "register">
+insert into tbl_goods (gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
+   values (tbl_goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
+</insert>
+
+<select id = "goodslist" resultType ="bit.com.shop.domain.GoodsVO">
+<!-- 상품 목록 --> 
+
+select gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate from tbl_goods order by gdsNum desc
+
+
+</select>
+
+<!-- 상품 조회 -->
+<!-- <select id="goodsView" resultType="bit.com.shop.domain.GoodsVO">
+select gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate from tbl_goods where gdsNum = #{gdsNum}
+
+</select> -->
+
+<select id ="goodsView" resultType="bit.com.shop.domain.GoodsViewVO"> 
+select g.gdsNum, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate from tbl_goods g inner join goods_category c 
+on g.catecode=c.catecode where g.gdsnum = #{gdsNum}
+
+</select>
+
+<update id="goodsModify">
+update tbl_goods set gdsName= #{gdsName}, cateCode= #{cateCode},  gdsPrice =#{gdsPrice}, gdsStock=#{gdsStock}, gdsDes= #{gdsDes} where gdsNum= ${gdsNum}
+
+</update>
+
+
 </mapper>
