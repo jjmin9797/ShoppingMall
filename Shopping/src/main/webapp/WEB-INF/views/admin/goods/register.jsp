@@ -7,6 +7,7 @@
 <title>Covid Mall</title>
 
 <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+<script src ="/resources/ckeditor/ckeditor.js"></script>
 
 <link rel="stylesheet" href="/resources/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
@@ -44,6 +45,8 @@ label { display:inline-block; width:70px; padding:5px; }
 label[for='gdsDes'] { display:block; }
 input { width:150px; }
 textarea#gdsDes { width:400px; height:180px; }
+
+.select_img img {margin:20px 0;}
 </style>
 
 
@@ -74,7 +77,7 @@ textarea#gdsDes { width:400px; height:180px; }
       <div id="container_box">
          <h2>상품 등록</h2>
          
-         <form role = "form" method="post" autocomplete="off">
+         <form role = "form" method="post" autocomplete="off" enctype="multipart/form-data">
          
          <div class = "inputArea">
             <label>1차 분류</label>
@@ -107,6 +110,36 @@ textarea#gdsDes { width:400px; height:180px; }
             <label for = "gdsDes">상품소개</label>
             <textarea rows="5" cols="50" id = "gdsDes" name = "gdsDes"></textarea>
          </div>
+         <script>
+ 			var ckeditor_config = {
+   					resize_enaleb : false,
+   					enterMode : CKEDITOR.ENTER_BR,
+   					shiftEnterMode : CKEDITOR.ENTER_P,
+   					filebrowserUploadUrl : "/admin/goods/ckUpload"
+ };
+ 
+ CKEDITOR.replace("gdsDes", ckeditor_config);
+</script>
+         <div class="inputArea">
+ 			<label for="gdsImg">이미지</label>
+ 			<input type="file" id="gdsImg" name="file" />
+ 			<div class="select_img"><img src="" />
+ 		</div>
+ 
+ 		<script>
+  		$("#gdsImg").change(function(){
+  			if(this.files && this.files[0]) {
+    			var reader = new FileReader;
+    			reader.onload = function(data) {
+     				$(".select_img img").attr("src", data.target.result).width(500);
+     				}
+    					reader.readAsDataURL(this.files[0]);
+   }
+  });
+ 		</script>
+ 		<!--프로젝트의 실제 경로  -->
+ 		<%=request.getRealPath("/") %>
+</div>
          
          <div class = "inputArea">
             <button type = "submit" id = "register_btn" class = "btn btn-primary">등록</button>
@@ -203,6 +236,17 @@ $(document).on("change", "select.category1", function(){
 });
 
 
+</script>
+<script>
+var regExp = /[^0-9]/gi; //숫자만 허용해주는 정규표현식
+
+$("#gdsPrice").keyup(function(){ numCheck($(this)); }); //숫자가 아닌 문자를 입력하려고 하면 숫자로 바꿔주는 
+$("#gdsStock").keyup(function(){ numCheck($(this)); });
+
+function numCheck(selector) {
+ var tempVal = selector.val();
+ selector.val(tempVal.replace(regExp, ""));
+}
 </script>
 </body>
 </html>

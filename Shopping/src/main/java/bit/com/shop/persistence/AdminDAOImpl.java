@@ -30,10 +30,11 @@ public class AdminDAOImpl implements AdminDAO {
 		
 	}
 	@Override
-	public List<GoodsVO> goodsList() throws Exception {
+	public List<GoodsViewVO> goodsList() throws Exception {
 		return sql.selectList(namespace+ ".goodslist"); 
 		
 	}
+	//상품조회+ 카테고리 조인 
 	@Override
 	public GoodsViewVO goodsView(int gdsNum) throws Exception {
 		return sql.selectOne(namespace+".goodsView", gdsNum);
@@ -41,6 +42,10 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void goodsModify(GoodsVO vo) throws Exception {
 		sql.update(namespace+".goodsModify", vo);	
+	}
+	@Override
+	public void goodsDelete(int gdsNum) throws Exception {
+		sql.delete(namespace+".goodsDelete", gdsNum);
 	}
 
 }
